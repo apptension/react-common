@@ -1,0 +1,14 @@
+{
+  "name": "arc",
+  "version": "0.0.1",
+  "description": "Apptension's React Common packages",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com:apptension/react-common.git"
+  },
+  "author": "Apptension",
+  "license": "MIT",
+  "devDependencies": {
+    "lerna": "^2.9.0"
+  }
+}
