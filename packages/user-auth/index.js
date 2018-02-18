@@ -1,3 +1,1 @@
-exports.testFunction = function(test) {
-    return 'hello' + test;
-};
+exports.registerGenerator = require('plopfile').registerGenerator;
