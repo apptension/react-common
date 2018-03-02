@@ -1,1 +1,1 @@
-exports.registerGenerator = require('plopfile').registerGenerator;
+exports.registerGenerator = require('./plopfile').registerGenerator;
