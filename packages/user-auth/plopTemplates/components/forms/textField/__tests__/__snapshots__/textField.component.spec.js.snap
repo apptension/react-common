@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TextField /> should render error state 1`] = `
+.c0 {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+<div
+  className="c0"
+>
+  <styled.div>
+    <styled.label>
+      <FormattedMessage
+        id="text"
+        values={Object {}}
+      />
+    </styled.label>
+    <styled.input
+      type="text"
+    />
+  </styled.div>
+  <styled.div>
+    test / Text error / {}
+  </styled.div>
+</div>
+`;
+
+exports[`<TextField /> should render itself 1`] = `
+.c0 {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+<div
+  className="c0"
+>
+  <styled.div>
+    <styled.label>
+      <FormattedMessage
+        id="text"
+        values={Object {}}
+      />
+    </styled.label>
+    <styled.input
+      type="text"
+    />
+  </styled.div>
+</div>
+`;

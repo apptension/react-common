@@ -4,7 +4,7 @@ import { fromJS } from 'immutable';
 import { stopSubmit, reset, actionTypes as RFTypes } from 'redux-form';
 import { decamelizeKeys } from 'humps';
 import { replace, CALL_HISTORY_METHOD } from 'react-router-redux';
-import { UNAUTHORIZED, OK, BAD_REQUEST, NO_CONTENT, INTERNAL_SERVER_ERROR } from 'http-status-codes';
+import { UNAUTHORIZED, OK, BAD_REQUEST, NO_CONTENT } from 'http-status-codes';
 
 import mockApi from '../../../utils/mockApi';
 import { StartupActions } from '../../startup';
@@ -103,14 +103,6 @@ describe('UserAuth: sagas', () => {
 
       const dispatchedAction = await sagaTester.waitFor(UserAuthTypes.LOGIN_SUCCESS);
       expect(dispatchedAction).to.deep.equal(UserAuthActions.loginSuccess());
-    });
-
-    it('should dispatch STUDY_GATE/CLEAR_SESSION action', async () => {
-      const sagaTester = getSagaTester();
-      sagaTester.dispatch(UserAuthActions.register(email, password));
-
-      const dispatchedAction = await sagaTester.waitFor(StudyGateTypes.CLEAR_SESSION);
-      expect(dispatchedAction).to.deep.equal(StudyGateActions.clearSession());
     });
   });
 

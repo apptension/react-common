@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ConfirmEmail /> should render itself 1`] = `
+<styled.div>
+  <FormattedMessage
+    defaultMessage="Confirming Email, please wait"
+    id="register.confirming"
+    values={Object {}}
+  />
+</styled.div>
+`;
