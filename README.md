@@ -1,3 +1,7 @@
 # Apptension React Commons
 
-TODO: add content here
+TODO:
+
+- [ ] find the way to install additional modules
+- [ ] add auth routes
+- [ ] find the way to easly test generated code inside boilerplate 
