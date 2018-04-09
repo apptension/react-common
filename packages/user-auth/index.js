@@ -12,8 +12,13 @@ module.exports = (plop) => {
     }, {
       type: 'addMany',
       destination: 'app/utils',
-      templateFiles: sourcePath + '/plopTemplates/utils/**',
+      templateFiles: sourcePath + '/plopTemplates/utils/*/**',
       base: sourcePath + '/plopTemplates/utils',
+    }, {
+      type: 'addMany',
+      destination: 'app/components',
+      templateFiles: sourcePath + '/plopTemplates/components/*/**',
+      base: sourcePath + '/plopTemplates/components',
     }, {
       type: 'addMany',
       destination: 'app/routes',
