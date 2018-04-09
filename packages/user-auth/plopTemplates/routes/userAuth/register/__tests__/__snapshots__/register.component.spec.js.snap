@@ -1,0 +1,234 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Register /> should render itself 1`] = `
+.c0 {
+  width: 100%;
+  max-width: 600px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin: auto;
+}
+
+<div
+  className="c0"
+>
+  <styled.h1>
+    <FormattedMessage
+      defaultMessage="Sign up"
+      id="register.title"
+      values={Object {}}
+    />
+  </styled.h1>
+  <styled.form
+    noValidate={true}
+    onSubmit={[Function]}
+  >
+    <Field
+      component={[Function]}
+      intl={
+        Object {
+          "formatMessage": [Function],
+        }
+      }
+      label={
+        Object {
+          "defaultMessage": "Email",
+          "id": "register.fields.email.label",
+        }
+      }
+      messages={
+        Object {
+          "emailFormatError": Object {
+            "defaultMessage": "Email is invalid",
+            "id": "register.fields.email.error.email",
+          },
+          "emailLabel": Object {
+            "defaultMessage": "Email",
+            "id": "register.fields.email.label",
+          },
+          "emailPresenceError": Object {
+            "defaultMessage": "Email cannot be blank",
+            "id": "register.fields.email.error.presence",
+          },
+          "passwordLabel": Object {
+            "defaultMessage": "Password",
+            "id": "register.fields.password.label",
+          },
+          "passwordPresenceError": Object {
+            "defaultMessage": "Password cannot be blank",
+            "id": "register.fields.password.error.presence",
+          },
+          "passwordRepeatLabel": Object {
+            "defaultMessage": "Repeat password",
+            "id": "register.fields.password.passwordRepeatLabel",
+          },
+          "repeatPasswordEqualityError": Object {
+            "defaultMessage": "This password does not match the one entered above. Please check that you have entered it correctly.",
+            "id": "register.fields.repeatPassword.error.equality",
+          },
+          "signIn": Object {
+            "defaultMessage": "Sign in",
+            "id": "register.signIn",
+          },
+          "submit": Object {
+            "defaultMessage": "Sign up",
+            "id": "register.submit",
+          },
+          "title": Object {
+            "defaultMessage": "Sign up",
+            "id": "register.title",
+          },
+        }
+      }
+      name="email"
+      type="email"
+    />
+    <Field
+      component={[Function]}
+      intl={
+        Object {
+          "formatMessage": [Function],
+        }
+      }
+      label={
+        Object {
+          "defaultMessage": "Password",
+          "id": "register.fields.password.label",
+        }
+      }
+      messages={
+        Object {
+          "emailFormatError": Object {
+            "defaultMessage": "Email is invalid",
+            "id": "register.fields.email.error.email",
+          },
+          "emailLabel": Object {
+            "defaultMessage": "Email",
+            "id": "register.fields.email.label",
+          },
+          "emailPresenceError": Object {
+            "defaultMessage": "Email cannot be blank",
+            "id": "register.fields.email.error.presence",
+          },
+          "passwordLabel": Object {
+            "defaultMessage": "Password",
+            "id": "register.fields.password.label",
+          },
+          "passwordPresenceError": Object {
+            "defaultMessage": "Password cannot be blank",
+            "id": "register.fields.password.error.presence",
+          },
+          "passwordRepeatLabel": Object {
+            "defaultMessage": "Repeat password",
+            "id": "register.fields.password.passwordRepeatLabel",
+          },
+          "repeatPasswordEqualityError": Object {
+            "defaultMessage": "This password does not match the one entered above. Please check that you have entered it correctly.",
+            "id": "register.fields.repeatPassword.error.equality",
+          },
+          "signIn": Object {
+            "defaultMessage": "Sign in",
+            "id": "register.signIn",
+          },
+          "submit": Object {
+            "defaultMessage": "Sign up",
+            "id": "register.submit",
+          },
+          "title": Object {
+            "defaultMessage": "Sign up",
+            "id": "register.title",
+          },
+        }
+      }
+      name="password"
+      type="password"
+    />
+    <Field
+      component={[Function]}
+      intl={
+        Object {
+          "formatMessage": [Function],
+        }
+      }
+      label={
+        Object {
+          "defaultMessage": "Repeat password",
+          "id": "register.fields.password.passwordRepeatLabel",
+        }
+      }
+      messages={
+        Object {
+          "emailFormatError": Object {
+            "defaultMessage": "Email is invalid",
+            "id": "register.fields.email.error.email",
+          },
+          "emailLabel": Object {
+            "defaultMessage": "Email",
+            "id": "register.fields.email.label",
+          },
+          "emailPresenceError": Object {
+            "defaultMessage": "Email cannot be blank",
+            "id": "register.fields.email.error.presence",
+          },
+          "passwordLabel": Object {
+            "defaultMessage": "Password",
+            "id": "register.fields.password.label",
+          },
+          "passwordPresenceError": Object {
+            "defaultMessage": "Password cannot be blank",
+            "id": "register.fields.password.error.presence",
+          },
+          "passwordRepeatLabel": Object {
+            "defaultMessage": "Repeat password",
+            "id": "register.fields.password.passwordRepeatLabel",
+          },
+          "repeatPasswordEqualityError": Object {
+            "defaultMessage": "This password does not match the one entered above. Please check that you have entered it correctly.",
+            "id": "register.fields.repeatPassword.error.equality",
+          },
+          "signIn": Object {
+            "defaultMessage": "Sign in",
+            "id": "register.signIn",
+          },
+          "submit": Object {
+            "defaultMessage": "Sign up",
+            "id": "register.submit",
+          },
+          "title": Object {
+            "defaultMessage": "Sign up",
+            "id": "register.title",
+          },
+        }
+      }
+      name="passwordRepeat"
+      type="password"
+    />
+    <styled.div>
+      <button
+        type="submit"
+      >
+        <FormattedMessage
+          defaultMessage="Sign up"
+          id="register.submit"
+          values={Object {}}
+        />
+      </button>
+      <Link
+        replace={false}
+        to="/en/login"
+      >
+        <FormattedMessage
+          defaultMessage="Sign in"
+          id="register.signIn"
+          values={Object {}}
+        />
+      </Link>
+    </styled.div>
+  </styled.form>
+</div>
+`;

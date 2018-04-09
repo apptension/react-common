@@ -6,8 +6,14 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'ramda';
 import { injectIntl } from 'react-intl';
 
-import { UserAuthActions, LOGIN_FORM, EMAIL_FIELD, PASSWORD_FIELD } from '../../../modules/userAuth';
-import { Login } from './login.component';
+import {
+  UserAuthActions,
+  REGISTER_FORM,
+  EMAIL_FIELD,
+  PASSWORD_FIELD,
+  PASSWORD_REPEAT_FIELD,
+} from '../../../modules/userAuth';
+import { Register } from './register.component';
 import { selectLocalesLanguage } from '../../../modules/locales/locales.selectors';
 
 const mapStateToProps = createStructuredSelector({
@@ -15,14 +21,14 @@ const mapStateToProps = createStructuredSelector({
 });
 
 export const mapDispatchToProps = (dispatch) => bindActionCreators({
-  login: UserAuthActions.login,
+  register: UserAuthActions.register,
 }, dispatch);
 
 export default compose(
   injectIntl,
   connect(mapStateToProps, mapDispatchToProps),
   reduxForm({
-    form: LOGIN_FORM,
+    form: REGISTER_FORM,
     validate: (values) => validate(values.toJS(), {
       [EMAIL_FIELD]: {
         presence: {
@@ -37,6 +43,15 @@ export default compose(
           message: '^passwordPresenceError',
         },
       },
+      [PASSWORD_REPEAT_FIELD]: {
+        presence: {
+          message: '^passwordPresenceError',
+        },
+        equality: {
+          attribute: PASSWORD_FIELD,
+          message: '^repeatPasswordEqualityError',
+        },
+      },
     }),
   }),
-)(Login);
+)(Register);

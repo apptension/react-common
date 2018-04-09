@@ -13,6 +13,7 @@ import {
 import messages from './login.messages';
 
 import { TextField } from '../../../components/forms/textField';
+import { EMAIL_FIELD, PASSWORD_FIELD } from '../../../modules/userAuth';
 
 export class Login extends PureComponent {
   static propTypes = {
@@ -41,7 +42,7 @@ export class Login extends PureComponent {
         <Form onSubmit={handleSubmit(this.handleSubmit)} noValidate>
           <Field
             component={TextField}
-            name="email"
+            name={EMAIL_FIELD}
             type="email"
             label={messages.emailLabel}
             messages={messages}
@@ -50,7 +51,7 @@ export class Login extends PureComponent {
 
           <Field
             component={TextField}
-            name="password"
+            name={PASSWORD_FIELD}
             type="password"
             label={messages.passwordLabel}
             messages={messages}

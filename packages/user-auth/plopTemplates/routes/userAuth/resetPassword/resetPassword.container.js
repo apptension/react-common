@@ -6,7 +6,7 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'ramda';
 import { injectIntl } from 'react-intl';
 
-import { RESET_PASSWORD_FORM, UserAuthActions } from '../../../modules/userAuth';
+import { RESET_PASSWORD_FORM, UserAuthActions, PASSWORD_FIELD } from '../../../modules/userAuth';
 import { ResetPassword } from './resetPassword.component';
 
 const mapStateToProps = createStructuredSelector({});
@@ -21,7 +21,7 @@ export default compose(
   reduxForm({
     form: RESET_PASSWORD_FORM,
     validate: (values) => validate(values.toJS(), {
-      password: {
+      [PASSWORD_FIELD]: {
         presence: {
           message: '^passwordPresenceError',
         },
