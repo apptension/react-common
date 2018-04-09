@@ -17,11 +17,6 @@ export const selectRemainingAttempts = createSelector(
   (state) => state.get('remainingLoginAttempts'),
 );
 
-export const selectHasLoggedInOnce = createSelector(
-  selectUserAuthDomain,
-  (state) => state.get('hasLoggedInOnce'),
-);
-
 export const selectAccountBlocked = createSelector(
   selectUserAuthDomain,
   (state) => state.get('accountBlocked'),

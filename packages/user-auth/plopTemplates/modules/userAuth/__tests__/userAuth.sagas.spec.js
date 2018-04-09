@@ -9,7 +9,12 @@ import { UNAUTHORIZED, OK, BAD_REQUEST, NO_CONTENT } from 'http-status-codes';
 import mockApi from '../../../utils/mockApi';
 import { StartupActions } from '../../startup';
 import { watchUserAuth } from '../userAuth.sagas';
-import { REGISTER_FORM, LOGIN_FORM, RECOVER_PASSWORD_FORM, RESET_PASSWORD_FORM, ROLE_USER } from '../userAuth.constants';
+import {
+  LOGIN_FORM,
+  RECOVER_PASSWORD_FORM,
+  RESET_PASSWORD_FORM,
+  REGISTER_FORM,
+} from '../userAuth.constants';
 import { UserAuthActions, UserAuthTypes } from '../userAuth.redux';
 
 describe('UserAuth: sagas', () => {
@@ -63,18 +68,14 @@ describe('UserAuth: sagas', () => {
   describe('successful registration', () => {
     const email = 'tstark@apptension.com';
     const password = 'passw0rd';
-    const jwt = 'jwt-token-1';
+    const token = 'jwt-token-1';
 
     const response = {
-      jwt,
-      user: {
-        email: email,
-        groups: [ROLE_USER],
-      },
+      token,
     };
 
     beforeEach(() => {
-      mockApi.post('/auth/registration/', decamelizeKeys({
+      mockApi.post('/auth/signup/', decamelizeKeys({
         email, password,
       })).reply(OK, response);
     });
@@ -85,7 +86,7 @@ describe('UserAuth: sagas', () => {
       sagaTester.dispatch(UserAuthActions.register(email, password));
       const dispatchedAction = await sagaTester.waitFor(UserAuthTypes.AUTH_STATE_CHANGED);
 
-      expect(dispatchedAction).to.deep.equal(UserAuthActions.authStateChanged(true, jwt, response.user));
+      expect(dispatchedAction).to.deep.equal(UserAuthActions.authStateChanged(true, token, email));
     });
 
     it('should dispatch STOP_SUBMIT action for registration form', async () => {
@@ -113,7 +114,7 @@ describe('UserAuth: sagas', () => {
     it('should dispatch a STOP_SUBMIT action for registration form with field errors', async () => {
       const sagaTester = getSagaTester();
 
-      mockApi.post('/auth/registration/', decamelizeKeys({
+      mockApi.post('/auth/signup/', decamelizeKeys({
         email, password,
       })).reply(BAD_REQUEST, {
         password: ['PASSWORD_TOO_COMMON_ERROR'],
@@ -129,18 +130,14 @@ describe('UserAuth: sagas', () => {
   describe('successful login', () => {
     const email = 'tstark@apptension.com';
     const password = 'passw0rd';
-    const jwt = 'jwt-token-1';
+    const token = 'jwt-token-1';
 
     const response = {
-      jwt,
-      user: {
-        email: email,
-        groups: [ROLE_USER],
-      },
+      token,
     };
 
     beforeEach(() => {
-      mockApi.post('/auth/login/', { email, password }).reply(OK, response);
+      mockApi.post('/auth/token/', { email, password }).reply(OK, response);
     });
 
     it('should dispatch USER_AUTH/AUTH_STATE_CHANGED action', async () => {
@@ -149,7 +146,7 @@ describe('UserAuth: sagas', () => {
       sagaTester.dispatch(UserAuthActions.login(email, password));
       const dispatchedAction = await sagaTester.waitFor(UserAuthTypes.AUTH_STATE_CHANGED);
 
-      expect(dispatchedAction).to.deep.equal(UserAuthActions.authStateChanged(true, jwt, response.user));
+      expect(dispatchedAction).to.deep.equal(UserAuthActions.authStateChanged(true, token, email));
     });
 
     it('should dispatch LOGIN_SUCCESS action', async () => {
@@ -169,7 +166,7 @@ describe('UserAuth: sagas', () => {
     it('should dispatch a STOP_SUBMIT action for login form with field errors', async () => {
       const sagaTester = getSagaTester();
 
-      mockApi.post('/auth/login/', { email, password }).reply(UNAUTHORIZED);
+      mockApi.post('/auth/token/', { email, password }).reply(UNAUTHORIZED);
 
       sagaTester.dispatch(UserAuthActions.login(email, password));
 
@@ -180,7 +177,7 @@ describe('UserAuth: sagas', () => {
     it('should dispatch a LOGIN_FAILURE action for login form with field errors', async () => {
       const sagaTester = getSagaTester();
 
-      mockApi.post('/auth/login/', { email, password }).reply(UNAUTHORIZED, { error: [], 'login_attempts_left': 4 });
+      mockApi.post('/auth/token/', { email, password }).reply(UNAUTHORIZED, { error: [], 'login_attempts_left': 4 });
 
       sagaTester.dispatch(UserAuthActions.login(email, password));
 
@@ -203,14 +200,13 @@ describe('UserAuth: sagas', () => {
   describe('confirm email success', () => {
     const uid = 'fakeUid';
     const emailToken = 'fakeEmailToken';
-    const jwt = 'fakeToken';
+    const token = 'fakeToken';
     const email = 'fake@mail.com';
 
     const response = {
-      jwt,
+      token,
       user: {
         email: email,
-        groups: [ROLE_USER],
       },
     };
 
@@ -222,7 +218,7 @@ describe('UserAuth: sagas', () => {
       sagaTester.dispatch(UserAuthActions.confirmEmail(uid, emailToken));
       const dispatchedAction = await sagaTester.waitFor(UserAuthTypes.AUTH_STATE_CHANGED);
 
-      expect(dispatchedAction).to.deep.equal(UserAuthActions.authStateChanged(true, jwt, response.user));
+      expect(dispatchedAction).to.deep.equal(UserAuthActions.authStateChanged(true, token, email));
     });
 
     it('should redirect to root route', async () => {

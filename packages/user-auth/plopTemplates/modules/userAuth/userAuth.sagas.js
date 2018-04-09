@@ -31,10 +31,10 @@ function* setAuthorizationToken({ isAuthenticated, token }) {
   }
 }
 
-function* configure({ isAuthenticated, token, user = null }) {
+function* configure({ isAuthenticated, token, email = null }) {
   try {
     yield setAuthorizationToken({ isAuthenticated, token });
-    yield put(UserAuthActions.authStateChanged(isAuthenticated, token, user));
+    yield put(UserAuthActions.authStateChanged(isAuthenticated, token, email));
   } catch (error) {
     /* istanbul ignore next */
     reportError(error);
@@ -55,15 +55,13 @@ function* startup() {
 
 function* register({ email, password }) {
   try {
-    const {
-      data: { jwt: token, user },
-    } = yield api.post('/auth/registration', {
+    const { data: { token } } = yield api.post('/auth/signup', {
       email,
       password,
     });
 
     yield put(stopSubmit(REGISTER_FORM));
-    yield configure({ isAuthenticated: true, token, user });
+    yield configure({ isAuthenticated: true, token, email });
     yield put(UserAuthActions.loginSuccess());
   } catch (error) {
     if (error.response) {
@@ -80,8 +78,8 @@ const shouldShowAttemptNotification = (attempts) => attempts <= 2 && attempts > 
 
 function* login({ email, password }) {
   try {
-    const { data: { jwt: token, user } } = yield api.post('/auth/login', { email, password });
-    yield configure({ isAuthenticated: true, token, user });
+    const { data: { token } } = yield api.post('/auth/token', { email, password });
+    yield configure({ isAuthenticated: true, token, email });
     yield put(UserAuthActions.loginSuccess());
   } catch (error) {
     if (error.response) {
@@ -104,7 +102,7 @@ function* login({ email, password }) {
 
       yield put(stopSubmit(LOGIN_FORM, { password: ['passwordWrongError'] }));
     } else {
-      yield configure({ isAuthenticated: false, token: null, user: null });
+      yield configure({ isAuthenticated: false, token: null, email: null });
       yield put(stopSubmit(LOGIN_FORM));
       /* istanbul ignore next */
       reportError(error);
@@ -123,8 +121,8 @@ function* logout() {
 
 function* confirmEmail({ uid, emailToken }) {
   try {
-    const { data: { jwt: token, user } } = yield api.post(`/auth/activate-account/${uid}/${emailToken}/`);
-    yield configure({ isAuthenticated: true, token, user });
+    const { data: { token, user: { email } } } = yield api.post(`/auth/activate-account/${uid}/${emailToken}/`);
+    yield configure({ isAuthenticated: true, token, email });
     yield all([
       put(replace('/')),
     ]);

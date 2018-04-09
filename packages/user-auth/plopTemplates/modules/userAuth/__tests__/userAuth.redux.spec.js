@@ -15,7 +15,6 @@ describe('UserAuth: redux', () => {
     isAuthenticated: false,
     token: null,
     remainingLoginAttempts: 5,
-    hasLoggedInOnce: false,
     accountBlocked: false,
     isResendingActivation: false,
     recoverPasswordSuccess: false,
@@ -46,7 +45,6 @@ describe('UserAuth: redux', () => {
           isAuthenticated: false,
           token: null,
           remainingLoginAttempts: 3,
-          hasLoggedInOnce: false,
           accountBlocked: false,
           isResendingActivation: false,
           recoverPasswordSuccess: false,
@@ -59,23 +57,7 @@ describe('UserAuth: redux', () => {
           isAuthenticated: false,
           token: null,
           remainingLoginAttempts: 0,
-          hasLoggedInOnce: false,
           accountBlocked: true,
-          isResendingActivation: false,
-          recoverPasswordSuccess: false,
-        });
-      });
-    });
-
-    describe('when LOGIN_SUCCESS action is received', () => {
-      it('should set the user has logged in at least', () => {
-        const action = UserAuthActions.loginSuccess();
-        expect(userAuthReducer(state, action).toJS()).to.deep.equal({
-          isAuthenticated: false,
-          token: null,
-          remainingLoginAttempts: 5,
-          hasLoggedInOnce: true,
-          accountBlocked: false,
           isResendingActivation: false,
           recoverPasswordSuccess: false,
         });
@@ -89,7 +71,6 @@ describe('UserAuth: redux', () => {
           isAuthenticated: false,
           token: null,
           remainingLoginAttempts: 5,
-          hasLoggedInOnce: false,
           accountBlocked: false,
           isResendingActivation: true,
           recoverPasswordSuccess: false,
@@ -104,7 +85,6 @@ describe('UserAuth: redux', () => {
           isAuthenticated: false,
           token: null,
           remainingLoginAttempts: 5,
-          hasLoggedInOnce: false,
           accountBlocked: false,
           isResendingActivation: false,
           recoverPasswordSuccess: false,
@@ -120,7 +100,6 @@ describe('UserAuth: redux', () => {
           isAuthenticated: false,
           token: null,
           remainingLoginAttempts: 5,
-          hasLoggedInOnce: false,
           accountBlocked: false,
           isResendingActivation: false,
           recoverPasswordSuccess: false,
@@ -135,7 +114,6 @@ describe('UserAuth: redux', () => {
           isAuthenticated: false,
           token: null,
           remainingLoginAttempts: 5,
-          hasLoggedInOnce: false,
           accountBlocked: false,
           isResendingActivation: false,
           recoverPasswordSuccess: false,
@@ -150,7 +128,6 @@ describe('UserAuth: redux', () => {
           isAuthenticated: false,
           token: null,
           remainingLoginAttempts: 5,
-          hasLoggedInOnce: false,
           accountBlocked: false,
           isResendingActivation: false,
           recoverPasswordSuccess: true,
@@ -165,7 +142,6 @@ describe('UserAuth: redux', () => {
           isAuthenticated: false,
           token: null,
           remainingLoginAttempts: 5,
-          hasLoggedInOnce: false,
           accountBlocked: false,
           isResendingActivation: false,
           recoverPasswordSuccess: false,

@@ -45,16 +45,11 @@ describe('UserProfile: sagas', () => {
 
       it('should fetch profile if unavailable and dispatch SET_DATA action ', async () => {
         const sagaTester = getSagaTester();
-        const journeyLog = [{ timestamp: '2018-01-02T16:06:32.977Z' }, { revealed: false }];
         const data = {
           email: 'tstark@apptension.com',
-          participant: {
-            journeyLog,
-            lastVisitedAt: '2018-01-02T17:06:32.977Z',
-          },
         };
 
-        mockApi.get('/auth/profile/').reply(OK, data);
+        mockApi.get('/auth/me/').reply(OK, data);
 
         sagaTester.dispatch(UserAuthActions.authStateChanged(true, 'token', null));
         const dispatchedAction = await sagaTester.waitFor(UserProfileTypes.SET_DATA);
@@ -65,16 +60,11 @@ describe('UserProfile: sagas', () => {
 
     it('should dispatch UserAuthActions.logout action if user is unauthorized', async () => {
       const sagaTester = getSagaTester();
-      const journeyLog = [{ timestamp: '2018-01-02T16:06:32.977Z' }, { revealed: false }];
       const data = {
         email: 'tstark@apptension.com',
-        participant: {
-          journeyLog,
-          lastVisitedAt: '2018-01-02T17:06:32.977Z',
-        },
       };
 
-      mockApi.get('/auth/profile/').reply(UNAUTHORIZED, data);
+      mockApi.get('/auth/me/').reply(UNAUTHORIZED, data);
 
       sagaTester.dispatch(UserAuthActions.authStateChanged(true, 'token', null));
       const dispatchedAction = await sagaTester.waitFor(UserAuthTypes.LOGOUT);
@@ -93,7 +83,7 @@ describe('UserProfile: sagas', () => {
         });
 
         const data = { email: 'tstark@apptension.com', journeyLog: [] };
-        mockApi.get('/auth/profile/').reply(OK, data);
+        mockApi.get('/auth/me/').reply(OK, data);
 
         sagaTester.dispatch(UserProfileActions.updateProfile());
         const dispatchedAction = await sagaTester.waitFor(UserProfileTypes.SET_DATA);

@@ -13,7 +13,7 @@ export function* fetchProfile({ isAuthenticated, user }) {
     }
 
     if (!user) {
-      const { data } = yield api.get('/auth/profile');
+      const { data } = yield api.get('/auth/me');
       user = data;
     }
 
